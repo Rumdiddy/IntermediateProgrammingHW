@@ -1,7 +1,7 @@
 //Samuel Jin
 //sjin16
 
-//second.c
+//second.c:
 #include <stdio.h>
 
 //Print second prize winner followed by new line.

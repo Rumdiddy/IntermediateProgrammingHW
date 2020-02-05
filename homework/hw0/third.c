@@ -1,6 +1,7 @@
 //Samuel Jin
 //sjin16
 
+//third.c:
 #include <stdio.h>
 
 // Print third prize winner followed by new line.
