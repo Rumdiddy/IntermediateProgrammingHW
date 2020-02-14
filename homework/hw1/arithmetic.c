@@ -13,31 +13,38 @@ int main() {
   
   printf("Please enter an arithmetic expression using * and / only:\n");
   scanres = scanf(" %f", &result);
+  //  if (scanres == EOF) {
+  //  printf("%s", mal);
+  //  return 1;
+  // }
   
-  while (scanres = scanf(" %c %f", &operator, &nnum) == 2) {
+  while ((scanres = scanf(" %c %f", &operator, &nnum)) == 2) {
     if (nnum == 0) {
       printf("%s", dive);
       return 2;
-    } else {   
-      switch(operator) {
+    }   
+    switch(operator) {
       case '*':
 	result = result * nnum;
-	break;
+       	break;
       case '/':
 	result = result / nnum;
 	break;
       default:
-	printf("%s", mal);
+	printf("\n%s", mal);
 	return 1;
-      }
     }
   }
 
-  if (scanres == EOF) {
-    printf("%f", result);
-    return 0;
-  } else {
-    printf("%s", mal);
+  if (scanres  == 1) {
+    printf("\n%s", mal);
     return 1;
   }
+  if (scanres == EOF || scanres == 0 || scanres == 2) {
+    printf("\n%f\n",result);
+    return 0;
+  } else {
+    printf("\n%s", mal);
+    return 1;
+  } 
 }
