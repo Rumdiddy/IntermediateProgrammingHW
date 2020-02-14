@@ -14,7 +14,7 @@ int main() {
   printf("Please enter an arithmetic expression using * and / only:\n");
   scanres = scanf(" %f", &result);
   
-  while (scanres = scanf(" %c %f", &operator &nnum) == 2) {
+  while (scanres = scanf(" %c %f", &operator, &nnum) == 2) {
     if (nnum == 0) {
       printf("%s", dive);
       return 2;
@@ -40,12 +40,4 @@ int main() {
     printf("%s", mal);
     return 1;
   }
-}
-    
-    
-    printf("Please enter an arithmetic expression using * and / only:\n");
-    
-
-
-
 }
