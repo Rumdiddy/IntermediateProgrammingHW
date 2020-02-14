@@ -29,7 +29,7 @@ int main() {
 
     //Checks for divide by zero
     if (nnum == 0) {
-      printf("\n%s", dive);
+      printf("%s", dive);
       return 2;
     }
 
@@ -42,23 +42,23 @@ int main() {
 	result = result / nnum;
 	break;
       default:
-	printf("\n%s", mal);
+	printf("%s", mal);
 	return 1;
     }
   }
 
   //Checks for the scanf only detecting one of the wanted inputs. Malformed Expression.
   if (scanres  == 1) {
-    printf("\n%s", mal);
+    printf("%s", mal);
     return 1;
   }
 
   //Checks for reaching end of expression or proper expression terminated by Ctrl-D
   if (scanres == EOF || scanres == 0 || scanres == 2) {
-    printf("\n%f\n",result);
+    printf("%f\n",result);
     return 0;
   } else {
-    printf("\n%s", mal);
+    printf("%s", mal);
     return 1;
   } 
 }
