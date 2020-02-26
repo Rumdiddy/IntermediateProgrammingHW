@@ -11,4 +11,8 @@ int pattern_match(const char t[], int tlen, const char p[], int plen, int start_
 //Returns array of offsets.
 int * total_offset(const char t[], const char p[]);
 
+//Prints out the offsets within the offset array.
+void totalout(int* arr);
 
+//Creating array from text file. Passing chara to all upper case.
+int makearr(
