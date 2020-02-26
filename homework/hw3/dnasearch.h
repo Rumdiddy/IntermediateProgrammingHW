@@ -14,5 +14,6 @@ int * total_offset(const char t[], const char p[]);
 //Prints out the offsets within the offset array.
 void totalout(int* arr);
 
-//Creating array from text file. Passing chara to all upper case.
-int makearr(
+//Creates all uppercase sequence array from text file. Checks to make sure if
+//file contains only ATGC in the sequence. Ignores spaces. Returns -1 if sequence invalid.
+int makearr(char sequence[], FILE* file);
