@@ -38,7 +38,10 @@ int* total_offset(const char t[], const char p[]) {
     ind = j + 1;
     count += 1;
   }
-  return occ;
+  occ[count] = -1;
+  int *occ_new = realloc(occ, sizeof(int) * count);
+
+  for(int i = 0; 
 }
 
 
