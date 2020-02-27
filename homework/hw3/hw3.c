@@ -14,11 +14,21 @@ int main(int argc, char *argv[]) {
   char seqarray[15001];
   
   char *fname = argv[1];
-  FILE* input = fopen(fname, "r");
+  FILE* filep = fopen(fname, "r");
 
   if (input == NULL) {
     printf("Error: could not open input file\n");
     return 1; //indicate error
   }
 
+  int valarray = makearr(seqarray, filep);
+
+  if (valarray == -1) {
+    printf("Invalid text\n");
+    return 1; //indicate error
+  }
+
+  printf("Please enter any number of patterns separated by whitespace.\n");
+  if (scanres == EOF) {
+    printf("%s", 
   
