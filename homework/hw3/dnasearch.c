@@ -5,6 +5,7 @@
 //Implementation of functions listed in dnasearch.h
 #include "dnasearch.h"
 #include <string.h>
+#include <ctype.h>
 
 //Returns the first pattern offset beginning at start_at. Returns -1
 //if there is no pattern found.
@@ -57,7 +58,39 @@ void totalout(int* arr) {
    
 //Creates all uppercase sequence array from text file. Ensures sequence
 // from file is valid.
-int makearr(char seqarray[], FILE* file) {
+int makearr(char seqarray[], FILE* filep) {
+  char letter;
+  int scanres;
+  int count = 0;
   
+  while ((scanres = fscanf(filep, " %c ", &letter)) == 1) {
+    letter = toupper(letter);
 
+    switch(letter) {
+    case 'A':
+      seqarray[count] = 'A';
+      count+=1;
+      break;
+    case 'C':
+      seqarray[count] = 'C';
+      count+=1;
+      break;
+    case 'G':
+      seqarray[count] = 'G';
+      count+=1;
+      break;
+    case 'T':
+      seqarray[count] = 'T';
+      count+=1;
+      break;
+    default:
+      return -1;
+    }
+  }
+
+  if (count <= 0 || count > 15000) {
+    return -1;
+  } else {
+    return 1;
+  }  
 }
