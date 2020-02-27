@@ -40,8 +40,24 @@ int* total_offset(const char t[], const char p[]) {
   }
   occ[count] = -1;
   int *occ_new = realloc(occ, sizeof(int) * count);
-
-  for(int i = 0; 
+  return occ_new;
 }
 
+//Prints out all elements of the offset array. Then frees the array.
+void totalout(int* arr) {
+  for (int i = 0; i < 15001; i++) {
+    if (arr[i] == -1) {
+      printf("\n");
+      break;
+    }
+    printf("%i ", arr[i]);
+  }
+  free(arr);
+}  
+   
+//Creates all uppercase sequence array from text file. Ensures sequence
+// from file is valid.
+int makearr(char seqarray[], FILE* file) {
+  
 
+}
