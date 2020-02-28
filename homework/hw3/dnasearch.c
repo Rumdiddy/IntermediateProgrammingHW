@@ -47,15 +47,20 @@ int* total_offset(const char t[], const char p[]) {
 }
 
 //Prints out all elements of the offset array. Then frees the array.
-void totalout(int* arr) {
+int totalout(int* arr) {
+  if (arr[0] == -1) {
+    printf("Not found\n");
+    free(arr);
+    return -1;
+  }
   for (int i = 0; i < 15001; i++) {
     if (arr[i] == -1) {
-      printf("\n");
       break;
     }
     printf("%i ", arr[i]);
   }
   free(arr);
+  return 1;
 }  
    
 //Creates all uppercase sequence array from text file. Ensures sequence
