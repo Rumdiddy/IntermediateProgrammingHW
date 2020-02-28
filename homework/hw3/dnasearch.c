@@ -1,3 +1,5 @@
+char seqarray[15000];
+
 //Samuel Jin
 //sjin16
 //dnasearch.c
@@ -93,4 +95,37 @@ int makearr(char seqarray[], FILE* filep) {
   } else {
     return 1;
   }  
+}
+
+//Checks if pattern is valid by checking length. Makes pattern case insensitive
+int pcheck(char p[], char seqarray[]) {
+  int tsize = sizeof(seqarray);
+  char letter;
+  
+  if (sizeof(p) > tsize) {
+    return -1;
+  }
+  
+  for (int i = 0; i < sizeof(p); i++) {
+    letter = p[i];
+    letter = toupper(letter);
+    
+    switch(letter) {
+    case 'A':
+      p[i] = 'A';
+      break;
+    case 'C':
+      p[i] = 'C';
+      break;
+    case 'G':
+      p[i]  = 'G';
+      break;
+    case 'T':
+      p[i]  = 'T';
+      break;
+    default:
+      return -1; 
+    }
+  }
+  return 1;
 }
