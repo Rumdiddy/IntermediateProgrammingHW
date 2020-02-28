@@ -45,7 +45,7 @@ int main(int argc, char *argv[]) {
 	pattern[i] = allp[i];
       }
 
-      int pval = pcheck(pattern, seqarray, count, valarray);
+      int pval = pcheck(pattern, count, valarray);
       if (pval == -1) {
 	printf("Invalid pattern\n");
 	return 1; //indicate error

@@ -20,4 +20,4 @@ int totalout(int* arr);
 int makearr(char sequence[], FILE* file);
 
 //Checks if pattern is valid. Makes pattern case insensitive.
-int pcheck(char p[], char seqarray[], int sizep, int sseq);
+int pcheck(char p[], int sizep, int sseq);

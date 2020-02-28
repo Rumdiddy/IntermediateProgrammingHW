@@ -105,7 +105,7 @@ int makearr(char seqarray[], FILE* filep) {
 }
 
 //Checks if pattern is valid by checking length. Makes pattern case insensitive
-int pcheck(char p[], char seqarray[], int sizep, int sseq) {
+int pcheck(char p[], int sizep, int sseq) {
   char letter;
   
   if (sizep > sseq) {
