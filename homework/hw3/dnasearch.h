@@ -2,6 +2,7 @@
 //sjin16
 
 //All function declarations go here. Implemented in dnasearch.c
+#include <stdio.h>
 
 //Return value is first offset ( >= start_at) of pattern.
 //Returns -1 if no such occurence. *Similar to Java indexOf()*
@@ -12,11 +13,11 @@ int pattern_match(const char t[], int tlen, const char p[], int plen, int start_
 int * total_offset(const char t[], const char p[]);
 
 //Prints out the offsets within the offset array.
-void totalout(int* arr);
+int totalout(int* arr);
 
 //Creates all uppercase sequence array from text file. Checks to make sure if
 //file contains only ATGC in the sequence. Ignores spaces. Returns -1 if sequence invalid.
 int makearr(char sequence[], FILE* file);
 
 //Checks if pattern is valid. Makes pattern case insensitive.
-int pcheck(char p[]);
+int pcheck(char p[], char seqarray[], int sizep, int sseq);

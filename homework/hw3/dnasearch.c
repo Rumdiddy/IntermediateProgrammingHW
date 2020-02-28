@@ -8,6 +8,7 @@ char seqarray[15000];
 #include "dnasearch.h"
 #include <string.h>
 #include <ctype.h>
+#include <stdlib.h>
 
 //Returns the first pattern offset beginning at start_at. Returns -1
 //if there is no pattern found.
@@ -99,20 +100,19 @@ int makearr(char seqarray[], FILE* filep) {
   if (count <= 0 || count > 15000) {
     return -1;
   } else {
-    return 1;
+    return count;
   }  
 }
 
 //Checks if pattern is valid by checking length. Makes pattern case insensitive
-int pcheck(char p[], char seqarray[]) {
-  int tsize = sizeof(seqarray);
+int pcheck(char p[], char seqarray[], int sizep, int sseq) {
   char letter;
   
-  if (sizeof(p) > tsize) {
+  if (sizep > sseq) {
     return -1;
   }
   
-  for (int i = 0; i < sizeof(p); i++) {
+  for (int i = 0; i < sizep; i++) {
     letter = p[i];
     letter = toupper(letter);
     

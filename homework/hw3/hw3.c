@@ -5,6 +5,7 @@
 //Implements functions and forms user interface.
 #include "dnasearch.h"
 #include <stdio.h>
+#include <ctype.h>
 
 int main(int argc, char *argv[]) {
   if (argc != 2) {
@@ -16,7 +17,7 @@ int main(int argc, char *argv[]) {
   char *fname = argv[1];
   FILE* filep = fopen(fname, "r");
 
-  if (input == NULL) {
+  if (filep == NULL) {
     printf("Error: could not open input file\n");
     return 1; //indicate error
   }
@@ -31,18 +32,20 @@ int main(int argc, char *argv[]) {
   int scanres;
   char allp[15000];
   char x;
+  int spacer;
   int count = 0;
   printf("Please enter any number of patterns separated by whitespace.\n");
 
   while (((scanres = scanf("%c", x)) != EOF) && (scanres == 1)) {
-    if (isspace(x)) {
+    spacer = isspace(x);
+    if (spacer) {
       char pattern[count];
 
       for (int i = 0; i < count; i++) {
 	pattern[i] = allp[i];
       }
 
-      int pval = pcheck(pattern, seqarray);
+      int pval = pcheck(pattern, seqarray, count, valarray);
       if (pval == -1) {
 	printf("Invalid pattern\n");
 	return 1; //indicate error
@@ -64,4 +67,3 @@ int main(int argc, char *argv[]) {
     }
   }
 }
-	 
