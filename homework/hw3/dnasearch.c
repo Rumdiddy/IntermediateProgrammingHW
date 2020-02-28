@@ -12,6 +12,8 @@
 //if there is no pattern found.
 int pattern_match(const char t[], int tlen, const char p[], int plen, int start_at) {
   int match;
+
+  //loops through array with entire sequence from file
   for(int i = start_at; i <= (tlen - plen); i++) {
     match = 1;
     for(int j = 0; j < plen; j++) {
@@ -35,13 +37,15 @@ int* total_offset(const char t[], const char p[]) {
   int ind = 0;
   int j;
   int count = 0;
+
+  //keeps running as long as pattern_match finds another occurrence.
   while ((j = pattern_match(t, tlen, p, plen, ind)) != -1) {
     occ[count] = j;
     ind = j + 1;
     count += 1;
   }
   occ[count] = -1;
-  int *occ_new = realloc(occ, sizeof(int) * count);
+  int *occ_new = realloc(occ, sizeof(int) * (count + 1));
   return occ_new;
 }
 
@@ -50,9 +54,11 @@ int totalout(int* arr) {
   if (arr[0] == -1) {
     printf("Not found\n");
     free(arr);
-    return -1;
+    return 1;
   }
-  for (int i = 0; i < 15001; i++) {
+
+  //loops through 150000 possibilities, stopping when -1 added at end is reached.
+  for (int i = 0; i < 15000; i++) {
     if (arr[i] == -1) {
       break;
     }
@@ -69,7 +75,8 @@ int makearr(char seqarray[], FILE* filep) {
   char letter;
   int scanres;
   int count = 0;
-  
+
+  //scans letter by letter, ignoring white space and ensring ACGT composition
   while ((scanres = fscanf(filep, " %c ", &letter)) == 1) {
     letter = toupper(letter);
 
