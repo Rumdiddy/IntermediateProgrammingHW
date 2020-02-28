@@ -1,5 +1,3 @@
-char seqarray[15000];
-
 //Samuel Jin
 //sjin16
 //dnasearch.c
