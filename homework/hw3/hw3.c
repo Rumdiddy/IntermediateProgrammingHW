@@ -57,13 +57,15 @@ int main(int argc, char *argv[]) {
       }
       
       int outres = totalout(poffset);
+
+      count = 0;
       if (outres == -1) {
 	return 1;
-      } 
-      
+      }
     } else {
       allp[count] = x;
       count+=1;
     }
   }
+  return 0;
 }
