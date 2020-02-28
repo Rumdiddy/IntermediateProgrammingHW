@@ -22,13 +22,46 @@ int main(int argc, char *argv[]) {
   }
 
   int valarray = makearr(seqarray, filep);
-
+  
   if (valarray == -1) {
     printf("Invalid text\n");
     return 1; //indicate error
   }
 
+  int scanres;
+  char allp[15000];
+  char x;
+  int count = 0;
   printf("Please enter any number of patterns separated by whitespace.\n");
-  if (scanres == EOF) {
-    printf("%s", 
-  
+
+  while (((scanres = scanf("%c", x)) != EOF) && (scanres == 1)) {
+    if (isspace(x)) {
+      char pattern[count];
+
+      for (int i = 0; i < count; i++) {
+	pattern[i] = allp[i];
+      }
+
+      int pval = pcheck(pattern, seqarray);
+      if (pval == -1) {
+	printf("Invalid pattern\n");
+	return 1; //indicate error
+      }
+
+      int* poffset = total_offset(seqarray, pattern);
+      for (int j = 0; j < sizeof(pattern); j++) {
+	printf("%c", pattern[j]);
+      }
+      
+      int outres = totalout(poffset);
+      if (outres == -1) {
+	return 1;
+      } 
+      
+    } else {
+      allp[count] = x;
+      count+=1;
+    }
+  }
+}
+	 
