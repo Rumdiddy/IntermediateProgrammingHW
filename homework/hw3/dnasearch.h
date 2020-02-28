@@ -17,3 +17,6 @@ void totalout(int* arr);
 //Creates all uppercase sequence array from text file. Checks to make sure if
 //file contains only ATGC in the sequence. Ignores spaces. Returns -1 if sequence invalid.
 int makearr(char sequence[], FILE* file);
+
+//Checks if pattern is valid. Makes pattern case insensitive.
+int pcheck(char p[]);
