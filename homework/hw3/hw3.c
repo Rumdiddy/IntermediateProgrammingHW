@@ -41,18 +41,24 @@ int main(int argc, char *argv[]) {
   }
 
   fclose(filep);
-  
-  printf("Please enter any number of patterns separated by whitespace.\n");
-  
+
+  int EOFistrue = 0;
   //loops as long as character is read from stdin and not EOF
-  while (((scanres = scanf("%c", &x))  == 1) && (scanres != EOF)) {
+  while (((scanres = scanf("%c", &x))  == 1) || (scanres == EOF)) {
     spacer = isspace(x);
 
     //skips if first is space of enter
     if (counter == 0 && spacer) {
       continue;
     }
+    if (scanres == EOF && counter == 0) {
+      break;
+    }
     
+    if (scanres == EOF) {
+      int EOFistrue = 1;
+      spacer = 1;
+    }
     //checks if space is reached in between pattern(s)
     if (spacer) {
       char pattern[counter];
@@ -84,7 +90,10 @@ int main(int argc, char *argv[]) {
       memset(pattern, 0, counter);
       counter = 0;
       if (outres == -1) {
-	return 1;
+	return 1; //indicate error
+      }
+      if (EOFistrue == 1) {
+	return 0;
       }
     } else {
       allp[counter] = x;
