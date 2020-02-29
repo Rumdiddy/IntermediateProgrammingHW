@@ -15,7 +15,6 @@ hw3: hw3.o dnasearch.o
 hw3.o: hw3.c dnasearch.h
 	$(CC) $(CLAGS) -c hw3.c
 
-
 # Links the test_dnasearch executable
 test_dnasearch: test_dnasearch.o dnasearch.o
 	$(CC) -o test_dnasearch test_dnasearch.o dnasearch.o
@@ -26,7 +25,7 @@ dnasearch.o: dnasearch.c dnasearch.h
 
 # Compiles test_dnasearch.c into an object file
 test_dnasearch.o: test_dnasearch.c dnasearch.h
-	$(CC) $(CFLAGS) -c test_dnasearch.c
+	$(CC) $(CFLAGS) -Wno-overlength-strings -c test_dnasearch.c
 
 # 'make clean' will remove intermediate & executable files
 clean:
