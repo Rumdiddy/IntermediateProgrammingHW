@@ -1,0 +1,23 @@
+Samuel Jin
+sjin16
+
+Functions:
+1. pattern_match:	This int function returns the next pattern found within the sequence from the start_at value.
+
+2. total_offset		This int* function returns a dynamically allocated array which stores all the pattern_match results. This finds all the occurrences of a certain pattern in a sequence.
+
+3. totalout		this int function prints out the array returned by total_offset. Because total offset function adds a -1 at the end, to stop printing out, the total out function stops upon hitting a -1.
+
+4. makearr		this function creates the sequence array with the entire sequence found in the file. It checks and makes sure the sequence is valid and also ensures that the length is valid. returns -1 if text invalid.
+
+5. pcheck		this function checks to see if the pattern is valid in terms of length relative to the sequence array as well as its character composition. Returns -1 if not valid.
+
+
+Main:
+In my main, I decided to pull in user pattern input character by character until hitting a space character. Prior to hitting a space, the previously scanned characters are stored into an array. Once the space is hit, that array is copied into a new pattern array as the pattern and my functions are run, generating the wanted output.
+
+Aside: I wanted to keep pattern match separate from the function that would store it into an array so that it would be easier to see if patternmatch returned a valid number. If I stored it into an array and returned that array, it would be hard to do error checking on the pattern match results.
+
+ASIDE IMPORTANT: In my main, i realized after my initial submission that the last pattern in the user input was ignored after ctrl-d was entered. I fixed this problem somewhat but it requires a second ctrl-d to be inputted for it to read this last pattern. Everything else works perfectly.
+
+I completed everything.
