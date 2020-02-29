@@ -18,6 +18,6 @@ In my main, I decided to pull in user pattern input character by character until
 
 Aside: I wanted to keep pattern match separate from the function that would store it into an array so that it would be easier to see if patternmatch returned a valid number. If I stored it into an array and returned that array, it would be hard to do error checking on the pattern match results.
 
-ASIDE IMPORTANT: In my main, i realized after my initial submission that the last pattern in the user input was ignored after ctrl-d was entered. I fixed this problem somewhat but it requires a second ctrl-d to be inputted for it to read this last pattern. Everything else works perfectly.
+ASIDE IMPORTANT: In my main, i realized after my initial submission that the last pattern in the user input was ignored after ctrl-d was entered. I fixed this problem somewhat but it requires a second ctrl-d to be inputted for it to read this last pattern. IF CTRL-D is inputted without a space following, then a second CTRL-D is required for it to process the pattern right before the CTRL-D. EVERYTHING WORKS IF A SPACE FOLLOWS!
 
 I completed everything.
