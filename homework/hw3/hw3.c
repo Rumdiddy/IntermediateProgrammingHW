@@ -42,63 +42,78 @@ int main(int argc, char *argv[]) {
 
   fclose(filep);
 
-  int EOFistrue = 0;
+  int EOFhappen = 0;
+  //scanres = scanf("%c", &x);
+  char pattern[15000];
+  //scanres = scanf("%s", pattern);
+  //spacer = isspace(x);
+
   //loops as long as character is read from stdin and not EOF
-  while (((scanres = scanf("%c", &x))  == 1) || (scanres == EOF)) {
-    spacer = isspace(x);
-
+  while (((scanres = scanf(" %s", pattern)) == 1)) {
+    counter = strlen(pattern);
+    //if (scanres == EOF || x == EOF) {
+    //  int outres = totaloutput(poffset);
+    // break;
+   
     //skips if first is space of enter
-    if (counter == 0 && spacer) {
-      continue;
-    }
-    if (scanres == EOF && counter == 0) {
-      break;
-    }
-    
-    if (scanres == EOF) {
-      int EOFistrue = 1;
-      spacer = 1;
-    }
+    //if (counter == 0 && spacer) {
+    //  continue;
+    //}
+        
     //checks if space is reached in between pattern(s)
-    if (spacer) {
-      char pattern[counter];
+    //if (spacer) {
+    //  char pattern[counter];
 
-      //copy allp[] to pattern[]
-      for (int i = 0; i < counter; i++) {
-	pattern[i] = allp[i];
-      }
+    //copy allp[] to pattern[]
+    //  for (int i = 0; i < counter; i++) { 
+    //	pattern[i] = allp[i];
+    // }
 
-      //check if pattern is valid
-      int pval = pcheck(pattern, counter, valarray);
-      if (pval == -1) {
-      	printf("Invalid pattern\n");
-      	return 1; //indicate error
-      }
+       //check if pattern is valid 
+       int pval = pcheck(pattern, counter, valarray);
+       if (pval == -1) {
+       	printf("Invalid pattern\n");
+       	return 1; //indicate error 
+       }
 
-      //performs pattern match over entire array
-      int* poffset = total_offset(seqarray, pattern);
-      for (int j = 0; j < counter; j++) {
-      	printf("%c", pattern[j]);
-      }
-      printf(" ");
+       //performs pattern match over entire array 
+       int* poffset = total_offset(seqarray, pattern);
 
-      //prints out the offset array
-      int outres = totalout(poffset);
+       
+       for (int j = 0; j < counter; j++) {
+	 printf("%c", pattern[j]);
+       }
+       printf(" ");
 
-      //clears arrays for next pattern.
-      memset(allp, 0, 15000);
-      memset(pattern, 0, counter);
-      counter = 0;
-      if (outres == -1) {
-	return 1; //indicate error
-      }
-      if (EOFistrue == 1) {
-	return 0;
-      }
-    } else {
-      allp[counter] = x;
-      counter+=1;
-    }
+       //prints out the offset array
+       int outres = totalout(poffset);
+
+       if (outres == -1) { 
+	 return 1; //indicate error
+       }
+      
+       //clears arrays for next pattern.
+       //memset(allp, 0, 15000);
+       //memset(pattern, 0, counter);
+       //counter = 0;
+
+       //} else {
+       //allp[counter] = x;
+       //counter++;
+       //}
+    //scanres = scanf("%c", &x);
+    //spacer = isspace(x);
+    //printf("previous scanned %c\n", x);
+    //if (scanres == EOF) {
+    //  printf("got here\n");
+    //  spacer = 1;
+    // EOFhappen = 1;
+    //  scanres = 1;
+    //}
+    //scanres = scanf("%s", pattern);
+       printf("\n");       
   }
+  
+  //printf("%d", scanres);
   return 0;
 }

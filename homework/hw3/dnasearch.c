@@ -64,7 +64,6 @@ int totalout(int* arr) {
     }
     printf("%i ", arr[i]);
   }
-  printf("\n");
   free(arr);
   return 1;
 }  
