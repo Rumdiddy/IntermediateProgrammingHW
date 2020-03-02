@@ -52,7 +52,7 @@ int* total_offset(const char t[], const char p[]) {
 //Prints out all elements of the offset array. Then frees the array.
 int totalout(int* arr) {
   if (arr[0] == -1) {
-    printf("Not found\n");
+    printf("Not found");
     free(arr);
     return 1;
   }
