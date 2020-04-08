@@ -8,8 +8,9 @@ DEBUGGING_FLAGS = -g -O0
 CFLAGS = $(CONSERVATIVE_FLAGS) $(DEBUGGING_FLAGS)
 
 
-# TODO: Add a target to create the hw5 executable here
-
+# Creates the hw5 executable
+hw5: hw5.o language_model.o
+	$(CC) $(CFLAGS) hw5.o language_model.o -o hw5
 
 # Compiles hw5.cpp into an object file
 hw5.o: hw5.cpp language_model.h
