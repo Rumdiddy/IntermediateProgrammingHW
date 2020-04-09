@@ -7,6 +7,7 @@
 #include <string>
 #include <fstream>
 #include <map>
+#include <iostream>
 
 //Checks to see if arguments provided are valid. Returns operation value
 //a = 11, c = 12, d = 13, f = 14. Returns 1 if error
@@ -17,3 +18,10 @@ void wordsep(std::ifstream &ifile, std::vector<std::string> &vect);
 
 //Creates trigrams of passed vector of strings and stores into a map based on occurrences
 std::map<std::vector<std::string>, int> gentrigram(std::vector<std::string> &vect);
+
+//Takes in pair of vector<string> and int and sorts based on the int value. Comparator
+bool sortfunct(const std::pair<std::vector<std::string>, int> &s1, const std::pair<std::vector<std::string>, int> &s2);
+
+//Sorts passed in map based on int values and outputs in order. Operation c
+void outmapc(std::map<std::vector<std::string>, int> &mapad);
+

@@ -2,8 +2,8 @@
 //sjin16
 
 //hw5.cpp
-#include "language_model.h"
 #include <iostream>
+#include "language_model.h"
 #include <fstream>
 #include <vector>
 #include <string.h>
@@ -25,7 +25,7 @@ int main(int argc, char* argv[]) {
   //Checks if file list can be opened
   ifstream iflist(argv[1]);
   if (!iflist.is_open()) {
-    cerr << "Invalid file list: " << argv[1] << endl;
+    std::cerr << "Invalid file list: " << argv[1] << endl;
     return 1;
   }
 
@@ -35,7 +35,7 @@ int main(int argc, char* argv[]) {
   while(iflist >> fn) {
     ifstream ifile(fn);
     if (!ifile.is_open()) {
-      cerr << "Invalid file: " << fn << endl;
+      std::cerr << "Invalid file: " << fn << endl;
       return 1;
     }
 
@@ -49,26 +49,26 @@ int main(int argc, char* argv[]) {
   switch(operval) {
   case 11: //a
     for(map<vector<string>, int>::const_iterator i = trivals.begin(); i != trivals.end(); ++i){
-      cout << i->second << " - [";
+      std::cout << i->second << " - [";
       for (vector<string>::const_iterator j = i->first.cbegin(); j != i->first.cend(); ++j) {
-	cout << *j << " ";
+	std::cout << *j << " ";
       }
-      cout << '\b';
-      cout << "]" << endl;    
+      std::cout << '\b';
+      std::cout << "]" << endl;    
     }
     break;
   case 13: //d
     for(map<vector<string>, int>::reverse_iterator i = trivals.rbegin(); i != trivals.rend(); ++i) {
-      cout << i->second << " - [";
+      std::cout << i->second << " - [";
       for (vector<string>::const_iterator j = i->first.cbegin(); j != i->first.cend(); ++j) {
-        cout << *j << " ";
+	std::cout << *j << " ";
       }
-      cout << '\b';
-      cout << "]" << endl;
+      std::cout << '\b';
+      std::cout << "]" << endl;
     }
     break;
   case 12: //c
-
+    outmapc(trivals);
     break;
   case 14: //f
 

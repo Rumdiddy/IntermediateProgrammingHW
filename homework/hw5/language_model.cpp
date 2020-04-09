@@ -5,16 +5,22 @@
 //Implementation of all functions in language_model.h
 
 #include "language_model.h"
-#include <iostream>
 #include <vector>
 #include <string.h>
 #include <stdio.h>
 #include <map>
+#include <set>
+#include <algorithm>
+#include <functional>
+#include <iostream>
+#include <utility>
 
 using std::cerr; using std::endl; 
 using std::string; using std::vector;
 using std::ifstream; using std::cout;
 using std::map; using std::pair;
+using std::function; using std::set;
+using std::make_pair;
 
 //Checks to see if arguments provided are valid. Returns operation value
 //a = 11, c = 12, d = 13, f = 14. Returns 1 if error
@@ -92,4 +98,41 @@ map<vector<string>, int> gentrigram(vector<string> &vect) {
     }
   }
   return trimap;  
+}
+
+//Takes in pair of vector<string> and int and sorts based on the int value. Comparator
+bool sortfunct(const pair<vector<string>, int> &s1, const pair<vector<string>, int> &s2) {
+  if (s1.second == s2.second) {
+    for (int i = 0; i < 3; i ++) {
+      if ((string)s1.first[i] == (string)s2.first[i]) {
+	continue;
+      } else {
+	return (s1.first[i] < s2.first[i]);
+      }  
+    }
+  }
+  return (s1.second > s2.second);
+}
+
+//Generates multimap for operation c, with the values being the trimaps. Key is frequency.
+void outmapc(map<vector<string>, int> &mapad) {
+
+  //Copies key-value pairs from map to vector
+  vector<pair<vector<string>, int>> tempvec;
+  for(map<vector<string>, int> :: iterator iter = mapad.begin(); iter != mapad.end(); iter++) {
+    tempvec.push_back(make_pair(iter->first, iter->second));
+  }
+
+  //Uses sort function and comparator created to sort based on value
+  sort(tempvec.begin(), tempvec.end(), sortfunct);
+
+  for(vector<pair<vector<string>, int>>::iterator it = tempvec.begin(); it != tempvec.end(); it++) {
+    cout << it->second << " - [";
+
+    for(vector<string>::const_iterator j = it->first.cbegin(); j != it->first.cend(); ++j) {
+      cout << *j << " ";
+    }
+    cout << '\b';
+    cout << "]" << endl;
+  }  
 }
