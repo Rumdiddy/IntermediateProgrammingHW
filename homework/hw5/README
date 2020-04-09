@@ -1,2 +1,10 @@
 Samuel Jin
 sjin16
+
+I, the creator of this homework project, in order to briefly explain the project, created this README file.
+
+In this homework assignment, the main program takes in a text file with a list of other files. Those files contain various word sequences and the program separates all words into unique trigrams, or 3 word pairings. From here, there are 4 functions that the user chooses via command-line arguments, which are a, d, c, and f. Operation "a" lists the number of occurrences of all the trigrams in alphabetical order. Operation "d" lists the same output as "a" but in reverse order. Operation "c" lists the trigrams in order based on their frequency or count. Operation "f" takes in 2 strings as arguments and looks for the most occuring third word which completes the trigram, then outputs that trigram along with its occurrence frequency.
+
+I found the greatest difficulty with operations C and F. I thought it was clever that I utilized a comparator function that returned whichever had the greatest occurrence, but if the occurrences were the same, then it would return a boolean to sort it in alphabetical order. So the comparator not only determined value order but also alphabetical order.
+
+For operation F, the only odd thing I noticed was that input arguments could not have an ' as in "they've" or else the code will keep looking for a closing  " ' " symbol. I don't think there was a workaround.
