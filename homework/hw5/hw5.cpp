@@ -53,20 +53,26 @@ int main(int argc, char* argv[]) {
   case 11: //a
     for(map<vector<string>, int>::const_iterator i = trivals.begin(); i != trivals.end(); ++i){
       cout << i->second << " - [";
-      for (vector<string>::const_iterator j = i->first.cbegin(); j != i->first.cend(); ++j) {
-	cout << *j << " ";
+      for (int j = 0; j < 3; j++) {
+	if (j != 2) {
+	  cout << i->first[j] << " ";
+	} else {
+	  cout << i->first[j];
+	}
       }
-      cout << '\b';
       cout << "]" << endl;    
     }
     break;
   case 13: //d
     for(map<vector<string>, int>::reverse_iterator i = trivals.rbegin(); i != trivals.rend(); ++i) {
       cout << i->second << " - [";
-      for (vector<string>::const_iterator j = i->first.cbegin(); j != i->first.cend(); ++j) {
-	cout << *j << " ";
+      for (int j = 0; j < 3; j++) {
+        if (j != 2) {
+          cout << i->first[j] << " ";
+        } else {
+          cout << i->first[j];
+        }
       }
-      cout << '\b';
       cout << "]" << endl;
     }
     break;

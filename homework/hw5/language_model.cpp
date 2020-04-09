@@ -129,10 +129,13 @@ void outmapc(map<vector<string>, int> &mapad) {
   for(vector<pair<vector<string>, int>>::iterator it = tempvec.begin(); it != tempvec.end(); it++) {
     cout << it->second << " - [";
 
-    for(vector<string>::const_iterator j = it->first.cbegin(); j != it->first.cend(); ++j) {
-      cout << *j << " ";
+    for (int j = 0; j < 3; j++) {
+        if (j != 2) {
+          cout << it->first[j] << " ";
+        } else {
+          cout << it->first[j];
+        }
     }
-    cout << '\b';
     cout << "]" << endl;
   }  
 }
@@ -169,10 +172,13 @@ void outf(map<vector<string>, int> &mapad, string s1, string s2) {
   } else {  
     //Print out most occuring third word trigram and frequency
     cout << maxval << " - [";
-    for(vector<string>::iterator iter2 = maxtemp.begin(); iter2 != maxtemp.end(); iter2++) {
-      cout << *iter2 << " ";
+    for(int i = 0; i < 3; i++) {
+      if (i != 2) {
+	cout << maxtemp[i] << " ";
+      } else {
+	cout << maxtemp[i];
+      }
     }
-    cout << '\b';
     cout << "]" << endl;  
   }
 }
