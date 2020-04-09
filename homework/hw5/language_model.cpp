@@ -136,3 +136,43 @@ void outmapc(map<vector<string>, int> &mapad) {
     cout << "]" << endl;
   }  
 }
+
+//Runs through the map and checks for the third word which occurs most frequently
+void outf(map<vector<string>, int> &mapad, string s1, string s2) {
+
+  //Checks for max frequency
+  int maxval = 0;
+  vector<string> maxtemp{"empty","empty","empty"};
+  
+  //Loops through map checking for first 2 words
+  for(map<vector<string>, int>::iterator it = mapad.begin(); it != mapad.end(); it++) {
+
+    //Checks if first 2 words match
+    vector<string> temp;
+    int tempval;
+    if (it->first[0] != s1 || it->first[1] != s2) {
+      continue;
+    } else {
+      temp = it->first;
+      tempval = mapad[temp];
+    }
+    
+    //Checks if the occurrence is the largest so far
+    if (tempval > maxval) {
+      maxval = tempval;
+      maxtemp = temp;
+    }
+  }
+
+  if (maxtemp[0] == "empty") {
+    cout << "No trigrams of the form [" << s1 << " " << s2 << " ?] appear" << endl;
+  } else {  
+    //Print out most occuring third word trigram and frequency
+    cout << maxval << " - [";
+    for(vector<string>::iterator iter2 = maxtemp.begin(); iter2 != maxtemp.end(); iter2++) {
+      cout << *iter2 << " ";
+    }
+    cout << '\b';
+    cout << "]" << endl;  
+  }
+}

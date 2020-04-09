@@ -21,26 +21,29 @@ int main(int argc, char* argv[]) {
   if (operval == 1) {
     return 1;
   }
-  
+    
   //Checks if file list can be opened
   ifstream iflist(argv[1]);
   if (!iflist.is_open()) {
-    std::cerr << "Invalid file list: " << argv[1] << endl;
+    cerr << "Invalid file list: " << argv[1] << endl;
     return 1;
   }
 
   //Checks if files within file list are openable
   string fn;
+  int error = 0;
   vector<string> allword;
   while(iflist >> fn) {
     ifstream ifile(fn);
     if (!ifile.is_open()) {
-      std::cerr << "Invalid file: " << fn << endl;
-      return 1;
+      cerr << "Invalid file: " << fn << endl;
+      error = 1;
     }
-
+    
     //Generates vector with words
-    wordsep(ifile, allword);
+    if (error == 0) {
+      wordsep(ifile, allword);
+    }
   }
  
   //Creates map of the trigrams
@@ -49,29 +52,29 @@ int main(int argc, char* argv[]) {
   switch(operval) {
   case 11: //a
     for(map<vector<string>, int>::const_iterator i = trivals.begin(); i != trivals.end(); ++i){
-      std::cout << i->second << " - [";
+      cout << i->second << " - [";
       for (vector<string>::const_iterator j = i->first.cbegin(); j != i->first.cend(); ++j) {
-	std::cout << *j << " ";
+	cout << *j << " ";
       }
-      std::cout << '\b';
-      std::cout << "]" << endl;    
+      cout << '\b';
+      cout << "]" << endl;    
     }
     break;
   case 13: //d
     for(map<vector<string>, int>::reverse_iterator i = trivals.rbegin(); i != trivals.rend(); ++i) {
-      std::cout << i->second << " - [";
+      cout << i->second << " - [";
       for (vector<string>::const_iterator j = i->first.cbegin(); j != i->first.cend(); ++j) {
-	std::cout << *j << " ";
+	cout << *j << " ";
       }
-      std::cout << '\b';
-      std::cout << "]" << endl;
+      cout << '\b';
+      cout << "]" << endl;
     }
     break;
   case 12: //c
     outmapc(trivals);
     break;
   case 14: //f
-
+    outf(trivals, (string)argv[3], (string)argv[4]);
     break;
   }
   return 0;

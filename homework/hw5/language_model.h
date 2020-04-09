@@ -25,3 +25,5 @@ bool sortfunct(const std::pair<std::vector<std::string>, int> &s1, const std::pa
 //Sorts passed in map based on int values and outputs in order. Operation c
 void outmapc(std::map<std::vector<std::string>, int> &mapad);
 
+//Runs through the entire word vector and checks for how many times that third word occurs
+void outf(std::map<std::vector<std::string>, int> &mapad, std::string s1, std::string s2);

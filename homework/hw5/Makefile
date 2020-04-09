@@ -10,7 +10,7 @@ CFLAGS = $(CONSERVATIVE_FLAGS) $(DEBUGGING_FLAGS)
 
 # Creates the hw5 executable
 hw5: hw5.o language_model.o
-	$(CC) $(CFLAGS) hw5.o language_model.o -o hw5
+	$(CC) hw5.o language_model.o -o hw5
 
 # Compiles hw5.cpp into an object file
 hw5.o: hw5.cpp language_model.h
