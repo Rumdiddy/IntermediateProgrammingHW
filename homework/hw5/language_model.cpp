@@ -9,10 +9,12 @@
 #include <vector>
 #include <string.h>
 #include <stdio.h>
+#include <map>
 
 using std::cerr; using std::endl; 
 using std::string; using std::vector;
 using std::ifstream; using std::cout;
+using std::map; using std::pair;
 
 //Checks to see if arguments provided are valid. Returns operation value
 //a = 11, c = 12, d = 13, f = 14. Returns 1 if error
@@ -52,23 +54,42 @@ int argcheck(int argc, char* argv[]) {
 //Generates vector of all the strings separated by a white space
 void wordsep(ifstream &ifi, vector<string> &vect) {
 
-  //Adds <Start_1> and <Start_2> 
-  string word1 = "<START_1>";
-  string word2 = "<START_2>";
-  vect.push_back(word1);
-  vect.push_back(word2);
-
+  vect.push_back("<START_1>");
+  vect.push_back("<START_2>");
   //Keeps reading words from inut file stream and storing to vector
   string iword;
   while (ifi >> iword) {
     vect.push_back(iword);    
   }
-
-  //Adds <END_#> to the vector
-  word1 = "<END_1>";
-  word2 = "<END_2>";
-  vect.push_back(word1);
-  vect.push_back(word2);
+  vect.push_back("<END_1>");
+  vect.push_back("<END_2>");
 }
 
+//Creates trigrams of passed vector of strings and stores into a map based on occurrences
+map<vector<string>, int> gentrigram(vector<string> &vect) {
 
+  //Checks for duplicates and stores trigrams into map. Counts occurrences
+  map<vector<string>, int> trimap;
+  for (int i = 0; i < ((int)vect.size() - 2);  i++) {
+
+    //Fills temporary vector with trigram
+    vector<string> temp;
+    for (int j = 0; j < 3; j++) {
+      temp.push_back(vect.at(i + j));
+    }
+
+    //Checks if trigram is end of the first.
+    if (vect.at(i) == "<END_1>") {
+      i++;
+      continue;
+    }
+    
+    //Checks if trigram to be filled is a duplicate. Updates count
+    if (trimap.find(temp) == trimap.end()) {
+      trimap.insert(pair<vector<string>, int>(temp, 1));
+    } else {
+      trimap[temp] = trimap[temp] + 1;
+    }
+  }
+  return trimap;  
+}

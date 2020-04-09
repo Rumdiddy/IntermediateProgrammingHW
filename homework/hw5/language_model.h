@@ -6,6 +6,7 @@
 #include <vector>
 #include <string>
 #include <fstream>
+#include <map>
 
 //Checks to see if arguments provided are valid. Returns operation value
 //a = 11, c = 12, d = 13, f = 14. Returns 1 if error
@@ -13,3 +14,6 @@ int argcheck(int argc, char* argv[]);
 
 //Generates vector of all the strings separated by a white space
 void wordsep(std::ifstream &ifile, std::vector<std::string> &vect);
+
+//Creates trigrams of passed vector of strings and stores into a map based on occurrences
+std::map<std::vector<std::string>, int> gentrigram(std::vector<std::string> &vect);

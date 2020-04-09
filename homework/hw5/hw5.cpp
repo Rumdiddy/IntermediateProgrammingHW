@@ -7,11 +7,12 @@
 #include <fstream>
 #include <vector>
 #include <string.h>
+#include <map>
 #include <stdio.h>
 
 using std::cout; using std::endl;
 using std::ifstream; using std::string;
-using std::vector; using std::cerr;
+using std::vector; using std::cerr; using std::map;
 
 int main(int argc, char* argv[]) {
 
@@ -41,10 +42,37 @@ int main(int argc, char* argv[]) {
     //Generates vector with words
     wordsep(ifile, allword);
   }
+ 
+  //Creates map of the trigrams
+  map<vector<string>, int> trivals = gentrigram(allword);
 
-  for(int i = 0; i < (int)allword.size(); i++) {
-      std::cout << allword.at(i) << endl;
+  switch(operval) {
+  case 11: //a
+    for(map<vector<string>, int>::const_iterator i = trivals.begin(); i != trivals.end(); ++i){
+      cout << i->second << " - [";
+      for (vector<string>::const_iterator j = i->first.cbegin(); j != i->first.cend(); ++j) {
+	cout << *j << " ";
+      }
+      cout << '\b';
+      cout << "]" << endl;    
+    }
+    break;
+  case 13: //d
+    for(map<vector<string>, int>::reverse_iterator i = trivals.rbegin(); i != trivals.rend(); ++i) {
+      cout << i->second << " - [";
+      for (vector<string>::const_iterator j = i->first.cbegin(); j != i->first.cend(); ++j) {
+        cout << *j << " ";
+      }
+      cout << '\b';
+      cout << "]" << endl;
+    }
+    break;
+  case 12: //c
+
+    break;
+  case 14: //f
+
+    break;
   }
-  
   return 0;
 }
