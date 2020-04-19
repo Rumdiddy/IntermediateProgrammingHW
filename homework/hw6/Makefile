@@ -9,7 +9,7 @@ CFLAGS = $(CONSERVATIVE_FLAGS) $(DEBUGGING_FAGS)
 
 # Creates the CTreeTest executable
 cTreeTest: CTreeTest.o CTree.o
-	$(CC) CTreeTest.o CTree.o -o CTreeTest -ggdb
+	$(CC) CTreeTest.o CTree.o -o cTreeTest -ggdb
 
 # Compiles CTreeTest.cpp into an object file
 CTreeTest.o: CTreeTest.cpp CTree.h
@@ -21,7 +21,7 @@ CTree.o: CTree.cpp CTree.h
 
 # Creates the TTreeTest executable
 tTreeTest: TTreeTest.o
-	$(CC) TTreeTest.o -o TTreeTest -ggdb
+	$(CC) TTreeTest.o -o tTreeTest -ggdb
 
 TTreeTest.o: TTreeTest.cpp Tree.h Tree.inc
 	$(CC) $(CFLAGS) -c TTreeTest.cpp -ggdb
