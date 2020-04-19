@@ -8,7 +8,7 @@ DEBUGGING_FLAGS = -g -O0
 CFLAGS = $(CONSERVATIVE_FLAGS) $(DEBUGGING_FAGS)
 
 # Creates the CTreeTest executable
-CTreeTest: CTreeTest.o CTree.o
+cTreeTest: CTreeTest.o CTree.o
 	$(CC) CTreeTest.o CTree.o -o CTreeTest -ggdb
 
 # Compiles CTreeTest.cpp into an object file
@@ -20,7 +20,7 @@ CTree.o: CTree.cpp CTree.h
 	$(CC) $(CFLAGS) -c CTree.cpp -ggdb
 
 # Creates the TTreeTest executable
-TTreeTest: TTreeTest.o
+tTreeTest: TTreeTest.o
 	$(CC) TTreeTest.o -o TTreeTest -ggdb
 
 TTreeTest.o: TTreeTest.cpp Tree.h Tree.inc
@@ -28,4 +28,4 @@ TTreeTest.o: TTreeTest.cpp Tree.h Tree.inc
 
 # 'make clean' will remove intermediate & executable files
 clean:
-	rm -f *.o CTreeTest
+	rm -f *.o cTreeTest tTreeTest
