@@ -6,8 +6,10 @@
 #include <iostream>
 #include "CTree.h"
 #include <string>
+#include <sstream>
 
 using std::ostream; using std::string;
+using std::stringstream; using std::endl;
 
 //Constructor function that takes in character for node.
 CTree::CTree(char ch) {
@@ -25,12 +27,22 @@ CTree::~CTree() {
 
 //Function to add a child. Passed character data for child.
 bool CTree::addChild(char ch) {
-    return kids->addSibling(ch);
+  if (kids == NULL) {
+    kids = new CTree(ch);
+    kids->prev = this;
+    return true;
+  }
+  return kids->addSibling(ch);
 }
 
 //Overloaded function of addChild. Passed root pointer
 bool CTree::addChild(CTree * root) {
-    return kids->addSibling(root); 
+  if (kids == NULL) {
+    kids = root;
+    kids->prev = this;
+    return true;
+  }
+  return kids->addSibling(root); 
 }
   
 //Function to add a sibling. Passed character data for sibling.
@@ -52,9 +64,10 @@ bool CTree::addSibling(char ch) {
     temproot->kids = prev;
     prev->prev = temproot;
     return true;
-  } else {
+  } else if (ch > data) {
     if (sibs == NULL) {
       sibs = new CTree(ch);
+      sibs->prev = this;
       return true;
     }
     if (sibs->data == ch) {
@@ -66,7 +79,7 @@ bool CTree::addSibling(char ch) {
       sibs->prev->sibs = sibs;
       sibs = sibs->prev;
       return true;
-    } else {
+    } else if (ch > data && ch > sibs->data) {
       return sibs->addSibling(ch);
     }
   }
@@ -106,7 +119,7 @@ bool CTree::addSibling(CTree * root) {
     if (sibs->data == root->data) {
       return false;
     }
-    if(sibs->data > ch) {
+    if(sibs->data > root->data) {
       sibs->prev = root;
       sibs->prev->prev = this;
       sibs->prev->sibs = sibs;
@@ -126,22 +139,20 @@ CTree& CTree::operator^(CTree& rt) {
 
 //Creates a string of all characters, separated by new lines.
 string CTree::toString() {
-  string temp;
-  
-  //Ensure start at parent node
-  if (prev != NULL) {
-    return prev->toString();
-  }
+
+  //Stores current data into stringstream
+  stringstream sstore;
+  sstore << data << endl;
 
   //Recursion going through kids then sibs
   if (kids != NULL) {
-    temp = (string(1, this->data) + "\n");
-    return temp.append(kids->toString());
+    sstore << kids->toString();
   }
   if (sibs != NULL) {
-    temp = (string(1, this->data) + "\n");
-    return temp.append(sibs->toString());
+    sstore << sibs->toString();
   }
+
+  return sstore.str();
 }
 
 //Overloaded << operator function that displays the same value as toString()
@@ -150,3 +161,30 @@ ostream& operator<<(ostream& os, CTree& rt) {
   return os;
 }
 
+//Returns true if two CTrees match node by node
+bool CTree::operator==(const CTree &root) { 
+  if(this->data != root.data) {
+      return false;
+  }
+  if((sibs == NULL) != (root.sibs == NULL)) {
+    return false;
+  }
+  if((kids == NULL) != (root.kids == NULL)) {
+    return false;
+  }
+  if((prev == NULL) != (root.prev == NULL)) {
+    return false;
+  }
+  if((prev == NULL) && (sibs != NULL)) {
+    return false;
+  }
+  
+  if ((kids != NULL) && (root.kids != NULL)) {
+    return (*kids == *(root.kids));
+  } else {
+    if ((sibs != NULL) && (root.sibs != NULL)) {
+      return (*sibs == *(root.sibs));
+    }
+  }
+  return true;
+}
