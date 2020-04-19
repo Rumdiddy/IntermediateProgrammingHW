@@ -2,3 +2,7 @@ Samuel Jin
 sjin16
 
 I, the creator of this homework project, in order to briefly explain the project, created this README file.
+
+This project's task was to create a class "CTree" which represents a dynamic tree of characters. This class had multiple functions such as those to add kids, siblings to existing nodes of the tree, as well as check for equality. Other functions were examples of the concept of overloading, in which various operators took on different tasks in the class, namely the "^" or "==" operators. In this project, we also created a template class version of CTree, and was mirrored in the files Tree.h and Tree.inc.
+
+I had struggles with the overloaded == operator, and kept running into Segmentation faults. I realized that this was because it would continue recursive action even when the kids or siblings were null, which then caused the program to access unauthorized memory. I solved this by simply adding if statements to prevent it from running if both kids or siblings were null. The toString was also slightly tricky as I needed to use a stringstream.
