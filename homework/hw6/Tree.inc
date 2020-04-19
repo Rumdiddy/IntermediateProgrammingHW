@@ -1,6 +1,6 @@
 //Samuel Jin
 //sjin16
-//CTree.cpp
+//Tree.inc
 
 #include <cstdlib>
 #include <iostream>
@@ -88,6 +88,7 @@ bool Tree<T>::addSibling(T inp) {
       return sibs->addSibling(inp);
     }
   }
+  return false;
 }
 
 //Function that adds new root node (along with its children) as an existing sibling
@@ -135,6 +136,7 @@ bool Tree<T>::addSibling(Tree<T> * root) {
       return sibs->addSibling(root);
     }
   }
+  return false;
 }
 
 //Overloaded operator function '^' to addChild

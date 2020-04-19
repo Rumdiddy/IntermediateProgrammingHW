@@ -83,6 +83,7 @@ bool CTree::addSibling(char ch) {
       return sibs->addSibling(ch);
     }
   }
+  return false;
 }
 
 //Function that adds new root node (along with its children) as an existing sibling
@@ -129,6 +130,7 @@ bool CTree::addSibling(CTree * root) {
       return sibs->addSibling(root);
     }
   }
+  return false;
 }
 
 //Overloaded operator function '^' to addChild
